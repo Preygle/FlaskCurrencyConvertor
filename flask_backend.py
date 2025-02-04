@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__)
 
-API_KEY = '92907336c3916cd9ae7fc0b968ee3a7e'
+API_KEY = 'YOUR_API_KEY'
 BASE_URL = 'http://api.currencylayer.com/live'
 
 
