@@ -1,10 +1,12 @@
 from flask import Flask, render_template, request
 import requests
 import os
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 
-API_KEY = '92907336c3916cd9ae7fc0b968ee3a7e'
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
 BASE_URL = 'http://api.currencylayer.com/live'
 
 
