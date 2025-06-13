@@ -4,8 +4,8 @@ import os
 from dotenv import load_dotenv
 
 app = Flask(__name__)
-
 load_dotenv()
+
 API_KEY = os.getenv("API_KEY")
 BASE_URL = 'http://api.currencylayer.com/live'
 
@@ -21,17 +21,20 @@ def convert():
         from_currency = request.form['from_currency'].upper()
         to_currency = request.form['to_currency'].upper()
         amount = float(request.form['amount'])
+
         currencies = f'{from_currency},{to_currency}'
         params = {
             'access_key': API_KEY,
             'currencies': currencies,
             'format': 1
         }
+
         response = requests.get(BASE_URL, params=params)
         data = response.json()
 
         if not data['success']:
             return f"Error: {data['error']['info']}"
+
         rates = data['quotes']
         from_rate = 1 if from_currency == 'USD' else rates.get(
             f'USD{from_currency}', None)
@@ -40,9 +43,14 @@ def convert():
 
         if not from_rate or not to_rate:
             return f"Error: Invalid currency code or rates not found."
+
         converted_amount = (amount / from_rate) * to_rate
 
-        return render_template('result.html', amount=amount, from_currency=from_currency, to_currency=to_currency, result=converted_amount)
+        return render_template('result.html',
+                               amount=amount,
+                               from_currency=from_currency,
+                               to_currency=to_currency,
+                               result=converted_amount)
 
     except requests.exceptions.RequestException as e:
         return f"Error: Unable to fetch conversion rates. {str(e)}"
@@ -51,4 +59,6 @@ def convert():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Use host='0.0.0.0' to make it accessible from outside the container
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
