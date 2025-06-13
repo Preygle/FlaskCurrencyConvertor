@@ -87,4 +87,8 @@ A web application for real-time currency conversion using the CurrencyLayer API.
 ## Contributing
 Pull requests welcome. For major changes, please open an issue first.
 
+## Future
+Automatically add all possible currencies with search option instead of hardcoding them
+
+
 
