@@ -9,7 +9,7 @@ A web application for real-time currency conversion using the CurrencyLayer API.
 - Flask backend with RESTful API
 
 ## Tech Stack
-- **Frontend**: HTML5, CSS3
+- **Frontend**: HTML, CSS
 - **Backend**: Python, Flask
 - **Deployment**: Docker
 - **API**: [CurrencyLayer API](https://currencylayer.com/)
@@ -40,7 +40,7 @@ A web application for real-time currency conversion using the CurrencyLayer API.
      ```
    - Option 2: Edit `main.py` directly:
      ```python
-     API_KEY = "your_currencylayer_api_key"
+     API_KEY = "your_own api_key"
      ```
 
 4. Run the application:
@@ -87,5 +87,4 @@ A web application for real-time currency conversion using the CurrencyLayer API.
 ## Contributing
 Pull requests welcome. For major changes, please open an issue first.
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+
